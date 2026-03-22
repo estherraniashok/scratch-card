@@ -1,3 +1,4 @@
+/* Reset */
 body {
   margin: 0;
   padding: 0;
@@ -8,30 +9,38 @@ body {
   height: 100vh;
 }
 
-/* Container should scale */
+/* Container */
 .container {
   position: relative;
-  width: 90vw;        /* 🔥 takes 90% of screen width */
-  max-width: 400px;   /* limit for big screens */
+  width: 90vw;        /* 📱 responsive width */
+  max-width: 420px;   /* 💻 limit for large screens */
 }
 
-/* Invite image full width */
+/* Invitation Image */
 .invite {
   width: 100%;
-  border-radius: 15px;
   display: block;
+  border-radius: 15px;
 }
 
-/* Canvas scales with container */
+/* Canvas (Scratch Area) */
 canvas {
   position: absolute;
 
-  /* 🔥 Adjust position again after scaling */
-  top: 38%;
-  left: 10%;
+  /* 🎯 Adjust these to match your text position */
+  top: 40%;     /* move up/down */
+  left: 10%;    /* move left/right */
 
-  width: 80%;
-  height: 35%;
+  width: 80%;   /* heart width */
+  height: 30%;  /* heart height */
 
   cursor: pointer;
+
+  /* 🔥 VERY IMPORTANT FOR MOBILE */
+  touch-action: none;
+}
+
+/* 🔧 TEMP DEBUG (remove later) */
+canvas {
+  /* border: 2px solid red; */
 }
