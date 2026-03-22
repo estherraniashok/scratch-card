@@ -1,4 +1,3 @@
-/* Reset */
 body {
   margin: 0;
   padding: 0;
@@ -12,35 +11,27 @@ body {
 /* Container */
 .container {
   position: relative;
-  width: 90vw;        /* 📱 responsive width */
-  max-width: 420px;   /* 💻 limit for large screens */
+  width: 90vw;
+  max-width: 420px;
 }
 
-/* Invitation Image */
+/* Invite */
 .invite {
   width: 100%;
   display: block;
   border-radius: 15px;
 }
 
-/* Canvas (Scratch Area) */
+/* Scratch Canvas */
 canvas {
   position: absolute;
 
-  /* 🎯 Adjust these to match your text position */
-  top: 40%;     /* move up/down */
-  left: 10%;    /* move left/right */
+  /* 🔥 Adjust this to match your text */
+  top: 40%;
+  left: 10%;
 
-  width: 80%;   /* heart width */
-  height: 30%;  /* heart height */
+  width: 80%;
+  height: 30%;
 
-  cursor: pointer;
-
-  /* 🔥 VERY IMPORTANT FOR MOBILE */
   touch-action: none;
-}
-
-/* 🔧 TEMP DEBUG (remove later) */
-canvas {
-  /* border: 2px solid red; */
 }
