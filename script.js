@@ -1,35 +1,71 @@
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+// Set canvas resolution properly
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+
+  drawGold();
+}
+
+window.addEventListener("load", resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
+
+// Load gold texture
+const img = new Image();
+img.src = "./gold.png";
+
+img.onload = function () {
+  drawGold();
+};
+
+function drawGold() {
+  ctx.globalCompositeOperation = "source-over";
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+}
+
+// Scratch logic
 let isDrawing = false;
 
-// 🖱️ MOUSE EVENTS (PC)
-canvas.addEventListener("mousedown", () => isDrawing = true);
-canvas.addEventListener("mouseup", () => isDrawing = false);
-canvas.addEventListener("mouseleave", () => isDrawing = false);
-
-canvas.addEventListener("mousemove", function(e) {
-  if (!isDrawing) return;
-
-  scratch(e.clientX, e.clientY);
-});
-
-// 📱 TOUCH EVENTS (MOBILE)
-canvas.addEventListener("touchstart", () => isDrawing = true);
-canvas.addEventListener("touchend", () => isDrawing = false);
-
-canvas.addEventListener("touchmove", function(e) {
-  if (!isDrawing) return;
-
-  const touch = e.touches[0];
-  scratch(touch.clientX, touch.clientY);
-});
-
-// ✨ SCRATCH FUNCTION (COMMON)
-function scratch(clientX, clientY) {
+// Get correct position
+function getXY(e) {
   const rect = canvas.getBoundingClientRect();
-  const x = clientX - rect.left;
-  const y = clientY - rect.top;
+
+  if (e.touches) {
+    return {
+      x: e.touches[0].clientX - rect.left,
+      y: e.touches[0].clientY - rect.top
+    };
+  } else {
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+}
+
+// Scratch function
+function scratch(e) {
+  if (!isDrawing) return;
+
+  e.preventDefault(); // 🔥 VERY IMPORTANT for mobile
+
+  const pos = getXY(e);
 
   ctx.globalCompositeOperation = "destination-out";
   ctx.beginPath();
-  ctx.arc(x, y, 20, 0, Math.PI * 2);
+  ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2);
   ctx.fill();
 }
+
+// PC
+canvas.addEventListener("mousedown", () => isDrawing = true);
+canvas.addEventListener("mouseup", () => isDrawing = false);
+canvas.addEventListener("mouseleave", () => isDrawing = false);
+canvas.addEventListener("mousemove", scratch);
+
+// Mobile
+canvas.addEventListener("touchstart", () => isDrawing = true);
+canvas.addEventListener("touchend", () => isDrawing = false);
+canvas.addEventListener("touchmove", scratch);
