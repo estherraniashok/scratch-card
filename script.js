@@ -1,12 +1,12 @@
-const canvas = document.querySelector("canvas");
+const canvas = document.getElementById("scratch");
 const ctx = canvas.getContext("2d");
 
-// Set canvas resolution properly
+// Resize canvas properly
 function resizeCanvas() {
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 
-  drawGold();
+  drawHeart(); // redraw after resize
 }
 
 window.addEventListener("load", resizeCanvas);
@@ -14,21 +14,39 @@ window.addEventListener("resize", resizeCanvas);
 
 // Load gold texture
 const img = new Image();
-img.src = "./gold.jpg";
+img.src = "./gold.png";
 
 img.onload = function () {
-  drawGold();
+  drawHeart();
 };
 
-function drawGold() {
-  ctx.globalCompositeOperation = "source-over";
-  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+// ❤️ Draw HEART shape with gold
+function drawHeart() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.save();
+
+  ctx.beginPath();
+
+  ctx.moveTo(w / 2, h * 0.8);
+  ctx.bezierCurveTo(w * 1.2, h * 0.4, w * 0.8, h * 0.1, w / 2, h * 0.3);
+  ctx.bezierCurveTo(w * 0.2, h * 0.1, -w * 0.2, h * 0.4, w / 2, h * 0.8);
+
+  ctx.closePath();
+  ctx.clip();
+
+  ctx.drawImage(img, 0, 0, w, h);
+
+  ctx.restore();
 }
 
 // Scratch logic
 let isDrawing = false;
 
-// Get correct position
+// Get position
 function getXY(e) {
   const rect = canvas.getBoundingClientRect();
 
@@ -45,11 +63,11 @@ function getXY(e) {
   }
 }
 
-// Scratch function
+// Scratch
 function scratch(e) {
   if (!isDrawing) return;
 
-  e.preventDefault(); // 🔥 VERY IMPORTANT for mobile
+  e.preventDefault();
 
   const pos = getXY(e);
 
