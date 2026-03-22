@@ -1,33 +1,37 @@
 body {
+  margin: 0;
+  padding: 0;
+  background: #fce4ec;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #fce4ec;
 }
 
+/* Container should scale */
 .container {
   position: relative;
-  width: 350px;
+  width: 90vw;        /* 🔥 takes 90% of screen width */
+  max-width: 400px;   /* limit for big screens */
 }
 
-/* Your Canva invite */
+/* Invite image full width */
 .invite {
   width: 100%;
   border-radius: 15px;
+  display: block;
 }
 
-/* Heart scratch area */
+/* Canvas scales with container */
 canvas {
   position: absolute;
 
-  /* 🔥 Adjust position if needed */
-  top: 210px;
-  left: 35px;
+  /* 🔥 Adjust position again after scaling */
+  top: 38%;
+  left: 10%;
 
-  /* 🔥 Bigger size */
-  width: 280px;
-  height: 200px;
+  width: 80%;
+  height: 35%;
 
   cursor: pointer;
 }
