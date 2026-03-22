@@ -1,37 +1,33 @@
 body {
-  margin: 0;
-  padding: 0;
-  background: #fce4ec;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: #fce4ec;
 }
 
-/* Container */
 .container {
   position: relative;
-  width: 90vw;
-  max-width: 420px;
+  width: 350px;
 }
 
-/* Invite */
+/* Your Canva invite */
 .invite {
   width: 100%;
-  display: block;
   border-radius: 15px;
 }
 
-/* Scratch Canvas */
+/* Heart scratch area */
 canvas {
   position: absolute;
 
-  /* 🔥 Adjust this to match your text */
-  top: 40%;
-  left: 10%;
+  /* 🔥 Adjust position if needed */
+  top: 210px;
+  left: 35px;
 
-  width: 80%;
-  height: 30%;
+  /* 🔥 Bigger size */
+  width: 280px;
+  height: 200px;
 
-  touch-action: none;
+  cursor: pointer;
 }
