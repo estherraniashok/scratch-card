@@ -14,7 +14,7 @@ window.addEventListener("resize", resizeCanvas);
 
 // Load gold texture
 const img = new Image();
-img.src = "./gold.png";
+img.src = "./gold.jpg";
 
 img.onload = function () {
   drawGold();
