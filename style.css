@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fce4ec;
+}
+
+.container {
+  position: relative;
+  width: 350px;
+}
+
+/* Your Canva invite */
+.invite {
+  width: 100%;
+  border-radius: 15px;
+}
+
+/* Heart scratch area */
+canvas {
+  position: absolute;
+
+  /* 🔥 Adjust position if needed */
+  top: 210px;
+  left: 35px;
+
+  /* 🔥 Bigger size */
+  width: 280px;
+  height: 200px;
+
+  cursor: pointer;
+}
