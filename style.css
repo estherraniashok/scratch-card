@@ -1,33 +1,53 @@
+/* 🌸 Page Background */
 body {
+  margin: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #fce4ec;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* 💌 Main Container */
 .container {
   position: relative;
-  width: 350px;
+  width: 320px; /* adjust based on your invite */
+  max-width: 90vw;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-/* Your Canva invite */
-.invite {
+/* 🖼️ Canva Invitation Image */
+.invite-img {
   width: 100%;
-  border-radius: 15px;
+  display: block;
+  border-radius: 20px;
 }
 
-/* Heart scratch area */
+/* ✨ Scratch Canvas Layer */
 canvas {
   position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  touch-action: none; /* 📱 VERY IMPORTANT for mobile */
+}
 
-  /* 🔥 Adjust position if needed */
-  top: 210px;
-  left: 35px;
+/* 💖 Optional: Add subtle glow to card */
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 192, 203, 0.4);
+  pointer-events: none;
+}
 
-  /* 🔥 Bigger size */
-  width: 280px;
-  height: 200px;
-
-  cursor: pointer;
+/* 📱 Mobile Responsive */
+@media (max-width: 480px) {
+  .container {
+    width: 90vw;
+  }
 }
